@@ -18,5 +18,7 @@ public interface AdminService {
 	public Student findOneStu(String sno);
 	//管理员修改单个学生
 	public int modStu(Student stu);
+	//管理员删除单个学生
+	public int delOneStu(String sno);
 	
 }

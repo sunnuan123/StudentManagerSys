@@ -42,5 +42,9 @@ public class AdminServiceImpl implements AdminService {
 	public int modStu(Student stu) {
 		return studentDao.updateStu(stu);
 	}
+	@Override
+	public int delOneStu(String sno) {
+		return studentDao.delStu(sno);
+	}
 
 }

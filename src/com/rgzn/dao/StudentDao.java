@@ -13,4 +13,7 @@ public interface StudentDao {
 	public Student selectOne(String sno);
 	//更新学生信息
 	public int updateStu(Student stu);
+	//删除学生
+	public int delStu(String sno);
+	
 }

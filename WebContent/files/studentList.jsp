@@ -130,6 +130,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													<tr>
 														<td height="20" colspan="15" align="center" bgcolor="#EEEEEE" class="tablestyle_title" style="text-align: center;"> 学生列表 </td>
 													</tr>
+													
 													<tr>
 														<td width="6%" align="center" bgcolor="#EEEEEE">选择</td>
 														<td width="9%" height="20" align="center" bgcolor="#EEEEEE">学生编号</td>
@@ -140,19 +141,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 														<td width="10%" align="center" bgcolor="#EEEEEE">联系电话</td>
 														<td width="19%" align="center" bgcolor="#EEEEEE">操作</td>
 													</tr>
-													<c:forEach items="${allStu}" var="stu">
-													<tr>
-														<td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-														<td height="20" bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">${stu.sno }</a></td>
-														<td bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">${stu.name }</a></td>
-														<td bgcolor="#FFFFFF">${stu.gender}</td>
-														<td bgcolor="#FFFFFF">${stu.classno}</td>
-														<td height="20" bgcolor="#FFFFFF">${stu.birthday}</td>
-														<td height="20" bgcolor="#FFFFFF">${stu.phone}</td>
-														<td bgcolor="#FFFFFF"><a href="#">删除</a>&nbsp;|&nbsp;<a href="servlet/StudentOne?sno=${stu.sno}">修改</a></td>
+													
+													<c:set var="count" value="0"></c:set>
+													<c:set var="mancount" value="0"></c:set>
+													<c:forEach items="${allStu}" var="stu" varStatus="status">
+													<!-- ${status.index}  ${status.count} -->
+													<c:if test="${status.index%2 == 0}">
+													<tr bgcolor="orange">
+													</c:if>
+													<c:if test="${status.index%2 != 0}">
+													<tr bgcolor="green">
+													</c:if>
+													
+														<td ><input type="checkbox" name="delid"/></td>
+														<td height="20" ><a href="listyuangongmingxi.html">${stu.sno }</a></td>
+														<td ><a href="listyuangongmingxi.html">${stu.name }</a></td>
+														<td >${stu.gender}</td>
+														<td >${stu.classno}</td>
+														<td height="20" >${stu.birthday}</td>
+														<td height="20" >${stu.phone}</td>
+														<td ><a href="servlet/StuRemoveController?sno=${stu.sno}">删除</a>&nbsp;|&nbsp;<a href="servlet/StudentOne?sno=${stu.sno}">修改</a></td>
 													</tr>
+													<c:set var="count" value="${count+1}"></c:set>
+													
+													<c:if test="${stu.gender=='男'}">
+														<c:set var="mancount" value="${mancount+1}"></c:set>
+													</c:if>
 													</c:forEach>
+													<tr>
+														<td height="20" colspan="15" align="center" bgcolor="#EEEEEE" class="tablestyle_title" style="text-align: center;">
+														总人数：${count},男生人数：${mancount},女生人数：${count-mancount}</td>
+													</tr>
 												</table>
+												
 											</td>
 										</tr>
 									</table>

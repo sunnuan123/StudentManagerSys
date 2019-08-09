@@ -110,4 +110,15 @@ public class StudentDaoImpl implements StudentDao {
 		return flag;
 	}
 
+	@Override
+	public int delStu(String sno) {
+		
+		String sql = "delete from t_student where sno = ?";
+		Object[] params = {sno};
+		int flag = DBUtil.executeUpdate(sql, params);
+		
+		DBUtil.closeAll();
+		return flag;
+	}
+
 }
