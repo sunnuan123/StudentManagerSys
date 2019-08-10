@@ -160,7 +160,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 														<td >${stu.classno}</td>
 														<td height="20" >${stu.birthday}</td>
 														<td height="20" >${stu.phone}</td>
-														<td ><a href="servlet/StuRemoveController?sno=${stu.sno}">删除</a>&nbsp;|&nbsp;<a href="servlet/StudentOne?sno=${stu.sno}">修改</a></td>
+														<td ><a href="servlet/AdminServlet?method=moveStu&sno=${stu.sno}">删除</a>&nbsp;|&nbsp;<a href="servlet/AdminServlet?method=getOneStu&sno=${stu.sno}">修改</a></td>
 													</tr>
 													<c:set var="count" value="${count+1}"></c:set>
 													

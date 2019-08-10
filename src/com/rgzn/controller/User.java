@@ -13,15 +13,32 @@ import com.rgzn.entity.Admin;
 import com.rgzn.service.AdminService;
 import com.rgzn.service.impl.AdminServiceImpl;
 
-@WebServlet("/servlet/AdminLogin")
-public class AdminLogin extends HttpServlet{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+@WebServlet("/servlet/User")
+public class User extends HttpServlet{
 
+	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	
+		req.setCharacterEncoding("utf-8");
+		
+		String method = req.getParameter("method");
+		if("login".equals(method)) {
+			login(req,resp);
+		}else if("logout".equals(method)) {
+			logout(req, resp);
+		}
+	
+	}
+	
+	/**
+	 * 用户登录
+	 * @param req
+	 * @param resp
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//乱码的处理
 		req.setCharacterEncoding("utf-8");
 		//数据的接收
@@ -50,4 +67,17 @@ public class AdminLogin extends HttpServlet{
 		}
 		
 	}
+	
+	/**
+	 * 用户退出
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().invalidate();
+		response.sendRedirect(request.getContextPath()+"/login.jsp");
+	}
+	
 }

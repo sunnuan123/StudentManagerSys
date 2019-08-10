@@ -29,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td height="147" background="images/top02.gif"><img src="images/top3.jpg" width="776" height="147" /></td>
 			</tr>
 		</table>
-		<form action="servlet/AdminLogin" method="post">
+		<form action="servlet/User?method=login" method="post">
 			<table width="562" border="0" align="center" cellpadding="0" cellspacing="0" class="right-table03">
 				<tr>
 					<td width="221">

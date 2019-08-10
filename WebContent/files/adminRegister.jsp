@@ -34,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</head>
 
 	<body>
-		<form name="fom" id="fom" method="post" action="servlet/AdminRegister">
+		<form name="fom" id="fom" method="post" action="servlet/AdminServlet?method=registerAdmin">
 
 	<form name="fom" id="fom" method="post">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
