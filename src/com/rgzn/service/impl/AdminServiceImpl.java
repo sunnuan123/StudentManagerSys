@@ -3,10 +3,16 @@ package com.rgzn.service.impl;
 import java.util.List;
 
 import com.rgzn.dao.AdminDao;
+import com.rgzn.dao.ClassDao;
+import com.rgzn.dao.CourseDao;
 import com.rgzn.dao.StudentDao;
 import com.rgzn.dao.impl.AdminDaoImpl;
+import com.rgzn.dao.impl.ClassDaoImpl;
+import com.rgzn.dao.impl.CourseDaoImpl;
 import com.rgzn.dao.impl.StudentDaoImpl;
 import com.rgzn.entity.Admin;
+import com.rgzn.entity.Class;
+import com.rgzn.entity.Course;
 import com.rgzn.entity.Student;
 import com.rgzn.service.AdminService;
 
@@ -14,6 +20,8 @@ public class AdminServiceImpl implements AdminService {
 	
 	private AdminDao adminDao = new AdminDaoImpl();
 	private StudentDao studentDao  =new StudentDaoImpl();
+	private ClassDao classDao = new ClassDaoImpl();
+	private CourseDao courseDao = new CourseDaoImpl();
 	
 	@Override
 	public Admin login(String name, String pwd) {
@@ -45,6 +53,22 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int delOneStu(String sno) {
 		return studentDao.delStu(sno);
+	}
+	@Override
+	public List<Student> findStuByNameAndCla(String name, int cls) {
+		return studentDao.selectByNameAndCls(name, cls);
+	}
+	@Override
+	public List<Class> findAllClass() {
+		return classDao.selectAllClass();
+	}
+	@Override
+	public int addOneCourse(Course cou) {
+		return courseDao.insertOneCourse(cou);
+	}
+	@Override
+	public List<Course> findAllCourseAndTeacher() {
+		return courseDao.selectAllCourseAndTeacher();
 	}
 
 }

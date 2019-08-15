@@ -3,8 +3,9 @@ package com.rgzn.service;
 import java.util.List;
 
 import com.rgzn.entity.Admin;
+import com.rgzn.entity.Class;
+import com.rgzn.entity.Course;
 import com.rgzn.entity.Student;
-
 public interface AdminService {
 	//登录
 	public Admin login(String name, String pwd);
@@ -20,5 +21,13 @@ public interface AdminService {
 	public int modStu(Student stu);
 	//管理员删除单个学生
 	public int delOneStu(String sno);
+	//管理员按名字和班级查询
+	public List<Student> findStuByNameAndCla(String name, int cls);
+	//管理员查询所有班级
+	public List<Class> findAllClass();
+	//管理员添加课程
+	public int addOneCourse(Course cou);
+	//管理员查询所有课程课和老师
+	public List<Course> findAllCourseAndTeacher();
 	
 }

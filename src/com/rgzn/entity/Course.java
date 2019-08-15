@@ -3,15 +3,17 @@ package com.rgzn.entity;
 import java.util.Date;
 
 public class Course {
-	private String cno;
+	private int cno;
 	private String cname;
-	private String credit;
+	private int credit;
 	private Date periodStart;
 	private Date periodEnd;
-
+	private Teacher teacher;
+	
+	
 	public Course() {
 	}
-	public Course(String cno, String cname, String credit, Date periodStart, Date periodEnd) {
+	public Course(int cno, String cname, int credit, Date periodStart, Date periodEnd) {
 		this.cno = cno;
 		this.cname = cname;
 		this.credit = credit;
@@ -19,10 +21,28 @@ public class Course {
 		this.periodEnd = periodEnd;
 	}
 	
-	public String getCno() {
+	public int getCno() {
 		return cno;
 	}
-	public void setCno(String cno) {
+	
+	
+	public Course(int cno, String cname, int credit, Date periodStart, Date periodEnd, Teacher teacher) {
+		this.cno = cno;
+		this.cname = cname;
+		this.credit = credit;
+		this.periodStart = periodStart;
+		this.periodEnd = periodEnd;
+		this.teacher = teacher;
+	}
+	
+	
+	public Teacher getTeacher() {
+		return teacher;
+	}
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+	public void setCno(int cno) {
 		this.cno = cno;
 	}
 	public String getCname() {
@@ -31,11 +51,18 @@ public class Course {
 	public void setCname(String cname) {
 		this.cname = cname;
 	}
-	public String getCredit() {
+	public int getCredit() {
 		return credit;
 	}
-	public void setCredit(String credit) {
+	public void setCredit(int credit) {
 		this.credit = credit;
+	}
+	public Course(String cname, int credit, Date periodStart, Date periodEnd) {
+		super();
+		this.cname = cname;
+		this.credit = credit;
+		this.periodStart = periodStart;
+		this.periodEnd = periodEnd;
 	}
 	public Date getPeriodStart() {
 		return periodStart;

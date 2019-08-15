@@ -88,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</SCRIPT>
 
 	<body>
-		<form name="fom" id="fom" method="post">
+		<form name="fom" id="fom" method="post" action="servlet/AdminServlet?method=getStuByNameAndCls">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 
 				<tr>
@@ -101,14 +101,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<tr>
 											<td width="24"><img src="images/ico07.gif" width="20" height="18" /></td>
 											<td>
-												<select name="select2">
-													<option>--请选择班级--</option>
-													<option>java班</option>
-													<option>ios班</option>
-													<option>安卓班</option>
+												<select name="classno">
+													<option value="0">--请选择班级--</option>
+													<c:forEach items="${allClass}" var="clazz">
+														<c:if test="${clazz.classno == classno }">
+															<option selected="selected" value="${clazz.classno }">${clazz.cname}</option>
+														</c:if>
+														<c:if test="${clazz.classno != classno }">
+															<option value="${clazz.classno }">${clazz.cname}</option>
+														</c:if>
+														
+													</c:forEach>
+													
 												</select>&emsp;
-												<span class="newfont06">姓名 : </span><input name="textfield" type="text" size="12" readonly="readonly" />
-												<input name="Submit" type="button" class="right-button02" value="查 询" />
+												<span class="newfont06">姓名 : </span><input name="name" type="text" size="12" value="${sname}"/>
+												<input name="Submit" type="submit" class="right-button02" value="查 询" />
 											</td>
 										</tr>
 									</table>
@@ -137,6 +144,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 														<td width="9%" align="center" bgcolor="#EEEEEE">姓名</td>
 														<td width="9%" align="center" bgcolor="#EEEEEE">性别</td>
 														<td width="9%" align="center" bgcolor="#EEEEEE">班级</td>
+														<td width="9%" align="center" bgcolor="#EEEEEE">教室</td>
 														<td width="10%" align="center" bgcolor="#EEEEEE">出生年月</td>
 														<td width="10%" align="center" bgcolor="#EEEEEE">联系电话</td>
 														<td width="19%" align="center" bgcolor="#EEEEEE">操作</td>
@@ -158,6 +166,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 														<td ><a href="listyuangongmingxi.html">${stu.name }</a></td>
 														<td >${stu.gender}</td>
 														<td >${stu.classno}</td>
+														<c:if test="${stu.clz.cname == ''}">
+															<td >暂无班级</td>
+														</c:if>
+														<td >${stu.clz.cname}</td>
 														<td height="20" >${stu.birthday}</td>
 														<td height="20" >${stu.phone}</td>
 														<td ><a href="servlet/AdminServlet?method=moveStu&sno=${stu.sno}">删除</a>&nbsp;|&nbsp;<a href="servlet/AdminServlet?method=getOneStu&sno=${stu.sno}">修改</a></td>

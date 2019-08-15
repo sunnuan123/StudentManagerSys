@@ -1,7 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-	<head>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<base href="<%=basePath %>">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title></title>
 		<style type="text/css">
@@ -44,11 +52,11 @@
 			-->
 		</style>
 
-		<link href="../css/css.css" rel="stylesheet" type="text/css" />
+		<link href="css/css.css" rel="stylesheet" type="text/css" />
 		<script type="text/JavaScript">
 
 		</script>
-		<link href="../css/style.css" rel="stylesheet" type="text/css" />
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
 	</head>
 	<SCRIPT language=JavaScript>
 		function sousuo() {
@@ -88,7 +96,7 @@
 					<td height="30">
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
-								<td height="62" background="../images/nav04.gif">
+								<td height="62" background="images/nav04.gif">
 									<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
 										<tr>
 											<td width="20"></td>
@@ -141,50 +149,20 @@
 														<td width="4%" align="center" bgcolor="#EEEEEE">教师联系方式</td>
 														<td width="19%" align="center" bgcolor="#EEEEEE">操作</td>
 													</tr>
-													<tr>
+													<c:forEach items="${allCou}" var="cou">
+														<tr>
 														<td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-														<td height="20" bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">001</a></td>
-														<td bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">Java</a></td>
-														<td bgcolor="#FFFFFF">4</td>
-														<td bgcolor="#FFFFFF">2017-02-10</td>
-														<td bgcolor="#FFFFFF">2017-02-30</td>
-														<td height="20" bgcolor="#FFFFFF">吴老师</td>
-														<td height="20" bgcolor="#FFFFFF">13499876543</td>
+														<td height="20" bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">${cou.cno}</a></td>
+														<td bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">${cou.cname}</a></td>
+														<td bgcolor="#FFFFFF">${cou.credit}</td>
+														<td bgcolor="#FFFFFF">${cou.periodStart}</td>
+														<td bgcolor="#FFFFFF">${cou.periodEnd}</td>
+														<td height="20" bgcolor="#FFFFFF">${cou.teacher.tname }</td>
+														<td height="20" bgcolor="#FFFFFF">${cou.teacher.tphone}</td>
 														<td bgcolor="#FFFFFF"><a href="#">删除</a>&nbsp;|&nbsp;<a href="#">修改</a></td>
 													</tr>
-													<tr>
-														<td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-														<td height="20" bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">002</a></td>
-														<td bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">大学语文</a></td>
-														<td bgcolor="#FFFFFF">4</td>
-														<td bgcolor="#FFFFFF">2017-02-10</td>
-														<td bgcolor="#FFFFFF">2017-02-30</td>
-														<td height="20" bgcolor="#FFFFFF">赵老师</td>
-														<td height="20" bgcolor="#FFFFFF">13499876543</td>
-														<td bgcolor="#FFFFFF"><a href="#">删除</a>&nbsp;|&nbsp;<a href="#">修改</a></td>
-													</tr>
-													<tr>
-														<td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-														<td height="20" bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">003</a></td>
-														<td bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">C++</a></td>
-														<td bgcolor="#FFFFFF">4</td>
-														<td bgcolor="#FFFFFF">2017-02-10</td>
-														<td bgcolor="#FFFFFF">2017-02-30</td>
-														<td height="20" bgcolor="#FFFFFF">黄老师</td>
-														<td height="20" bgcolor="#FFFFFF">13499876543</td>
-														<td bgcolor="#FFFFFF"><a href="#">删除</a>&nbsp;|&nbsp;<a href="#">修改</a></td>
-													</tr>
-													<tr>
-														<td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-														<td height="20" bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">004</a></td>
-														<td bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">数据结构</a></td>
-														<td bgcolor="#FFFFFF">4</td>
-														<td bgcolor="#FFFFFF">2017-02-10</td>
-														<td bgcolor="#FFFFFF">2017-03-30</td>
-														<td height="20" bgcolor="#FFFFFF">刘老师</td>
-														<td height="20" bgcolor="#FFFFFF">13499876543</td>
-														<td bgcolor="#FFFFFF"><a href="#">删除</a>&nbsp;|&nbsp;<a href="#">修改</a></td>
-													</tr>
+													</c:forEach>
+													
 													
 												</table>
 											</td>
@@ -195,7 +173,7 @@
 						</table>
 						<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
 							<tr>
-								<td height="6"><img src="../images/spacer.gif" width="1" height="1" /></td>
+								<td height="6"><img src="images/spacer.gif" width="1" height="1" /></td>
 							</tr>
 							<tr>
 								<td height="33">

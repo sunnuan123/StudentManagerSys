@@ -9,6 +9,7 @@ import java.util.List;
 import com.rgzn.dao.StudentDao;
 import com.rgzn.entity.Student;
 import com.rgzn.utils.DBUtil;
+import com.rgzn.entity.Class;
 
 public class StudentDaoImpl implements StudentDao {
 	/**
@@ -34,11 +35,11 @@ public class StudentDaoImpl implements StudentDao {
 	@Override
 	public List<Student> selectAll() {
 
-		List<Student> stuList = new ArrayList<Student>();
-		String sql = "select * from t_student";
+		
+		String sql = "select * from t_student stu left join t_class cls on stu.classno = cls.classno";
 		Object[] params = {};
 		
-		
+		List<Student> stuList = new ArrayList<Student>();
 		ResultSet rs = DBUtil.executeQuery(sql, params);
 		try {
 			while(rs.next()) {
@@ -50,7 +51,16 @@ public class StudentDaoImpl implements StudentDao {
 				Date birthday = rs.getDate(6);
 				int classno = rs.getInt(7);
 				String remark = rs.getString(8);
-				Student stu = new Student(sno, name, pwd, phone, gender, birthday, classno, remark);
+				
+				int clsno = Integer.parseInt(rs.getString(9));
+				String cname = rs.getString(10);
+				String cteacher = rs.getString(11);
+				String classroom = rs.getString(12);
+				
+				
+				Class cls = new Class(clsno, cname, cteacher, classroom);
+				
+				Student stu = new Student(sno, name, pwd, phone, gender, birthday, classno, remark, cls);
 				stuList.add(stu);
 			}
 		} catch (SQLException e) {
@@ -109,7 +119,10 @@ public class StudentDaoImpl implements StudentDao {
 		int flag = DBUtil.executeUpdate(sql, params);
 		return flag;
 	}
-
+	
+	/**
+	 * 删除学生
+	 */
 	@Override
 	public int delStu(String sno) {
 		
@@ -119,6 +132,53 @@ public class StudentDaoImpl implements StudentDao {
 		
 		DBUtil.closeAll();
 		return flag;
+	}
+	
+	/**
+	 * 根据班级和姓名查询学生
+	 */
+	@Override
+	public List<Student> selectByNameAndCls(String sname, int cls) {
+		String sql = "select * from t_student stu left join t_class cls on stu.classno = cls.classno where 1=1";
+		if(null != sname && !"".equals(sname)) {
+			sql += " and stu.sname like '%"+sname+"%'";
+		}
+		if(cls>0) {
+			sql += " and stu.classno = "+cls;
+		}
+		
+		Object[] params = {};
+		
+		List<Student> stuList = new ArrayList<Student>();
+		ResultSet rs = DBUtil.executeQuery(sql, params);
+		try {
+			while(rs.next()) {
+				String sno = Integer.toString(rs.getInt(1));
+				String pwd = rs.getString(2);
+				String name = rs.getString(3);
+				String phone = rs.getString(4);
+				String gender = rs.getString(5);
+				Date birthday = rs.getDate(6);
+				int classno = rs.getInt(7);
+				String remark = rs.getString(8);
+				int clsno = Integer.parseInt(rs.getString(9));
+				String cname = rs.getString(10);
+				String cteacher = rs.getString(11);
+				String classroom = rs.getString(12);
+				
+				
+				Class clas = new Class(clsno, cname, cteacher, classroom);
+				
+				Student stu = new Student(sno, name, pwd, phone, gender, birthday, classno, remark, clas);
+				stuList.add(stu);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.closeAll();
+		}
+		
+		return stuList;
 	}
 
 }

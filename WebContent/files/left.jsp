@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -130,7 +132,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<tr>
 							<td width="9%" height="20"><img id="xiaotu17" src="images/ico06.gif" width="8" height="12" /></td>
 							<td width="91%">
-								<a href="files/studentRegister.jsp" target="mainFrame" class="left-font03" onClick="tupian('17');">添加学生</a></td>
+								<a href="servlet/AdminServlet?method=getAllClass" target="mainFrame" class="left-font03" onClick="tupian('17');">添加学生</a></td>
 						</tr>
 						<tr>
 							<td width="9%" height="20"><img id="xiaotu18" src="images/ico06.gif" width="8" height="12" /></td>
@@ -161,7 +163,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</tr>
 						<tr>
 							<td width="9%" height="20"><img id="xiaotu2" src="images/ico06.gif" width="8" height="12" /></td>
-							<td width="91%"><a href="files/courseList.html" target="mainFrame" class="left-font03" onClick="tupian('2');">查询课程</a></td>
+							<td width="91%"><a href="servlet/AdminServlet?method=getAllCouAndTea" target="mainFrame" class="left-font03" onClick="tupian('2');">查询课程</a></td>
 						</tr>
 					</table>
 					<!--  1.2 课程功能结束    -->

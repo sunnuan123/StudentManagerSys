@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -113,15 +115,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												<tr>
 													<td>班级:</td>
 													<td>
-													<input class="text" name="classno" style="width:154px" value="${stu.classno }"/>
 														<select name="classno" class="text">
-															<option selected="selected">==请选择==</option>
-															<option value="1">java7</option>
-															<option value="2">java2</option>
-															<option value="3">java3</option>
-															<option value="4">java4</option>
-															<option value="5">java5</option>
-															<option value="6">ios1</option>
+															<!-- <option selected="selected">==请选择==</option> -->
+															<c:forEach items="${allClass}" var="clazz">
+																<c:if test="${stu.classno == clazz.classno}">
+																	<option selected="selected" alue="${clazz.classno}">${clazz.cname}</option>
+																</c:if>
+																<c:if test="${stu.classno != clazz.classno}">
+																	<option value="${clazz.classno}">${clazz.cname}</option>
+																</c:if>
+																
+															</c:forEach>
+															
 														</select>
 													</td>
 												</tr>

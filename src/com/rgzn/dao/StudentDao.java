@@ -15,5 +15,7 @@ public interface StudentDao {
 	public int updateStu(Student stu);
 	//删除学生
 	public int delStu(String sno);
+	//根据班级和姓名查询查询
+	public List<Student> selectByNameAndCls(String name, int cls);
 	
 }

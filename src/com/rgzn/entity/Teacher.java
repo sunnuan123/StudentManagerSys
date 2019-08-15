@@ -3,7 +3,7 @@ package com.rgzn.entity;
 import java.util.Date;
 
 public class Teacher {
-	private String tno;
+	private int tno;
 	private String tname;
 	private String tpwd;
 	private String tphone;
@@ -13,7 +13,7 @@ public class Teacher {
 	public Teacher() {
 	}
 
-	public Teacher(String tno, String tname, String tpwd, String tphone, Date hireDate, String remark) {
+	public Teacher(int tno, String tname, String tpwd, String tphone, Date hireDate, String remark) {
 		this.tno = tno;
 		this.tname = tname;
 		this.tpwd = tpwd;
@@ -27,11 +27,11 @@ public class Teacher {
 		this.tpwd = tpwd;
 	}
 
-	public String getTno() {
+	public int getTno() {
 		return tno;
 	}
 
-	public void setTno(String tno) {
+	public void setTno(int tno) {
 		this.tno = tno;
 	}
 

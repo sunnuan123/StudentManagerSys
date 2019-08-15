@@ -11,6 +11,9 @@ public class Student {
 	private Date birthday;
 	private int classno;
 	private String remark;
+	private Class clz;
+	
+	
 	
 	public Student() {
 	}
@@ -40,6 +43,35 @@ public class Student {
 		this.classno = classno;
 		this.remark = remark;
 	}
+	
+
+	
+	public Student(String sno, String name, String pwd, String phone, String gender, Date birthday, int classno,
+			String remark, Class clz) {
+		this.sno = sno;
+		this.name = name;
+		this.pwd = pwd;
+		this.phone = phone;
+		this.gender = gender;
+		this.birthday = birthday;
+		this.classno = classno;
+		this.remark = remark;
+		this.clz = clz;
+	}
+
+
+
+	public Class getClz() {
+		return clz;
+	}
+
+
+
+	public void setClz(Class clz) {
+		this.clz = clz;
+	}
+
+
 
 	public String getSno() {
 		return sno;
