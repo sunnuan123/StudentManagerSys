@@ -37,5 +37,6 @@ public interface AdminService {
 	public List<Teacher> findAllTea();
 	//管理员指定课程给老师
 	public int addCouToTea(TeaAndCou tac);
-	
+	//管理员取消老师分配的课程
+	public int delTc(int tno, int cno);
 }

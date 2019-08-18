@@ -41,6 +41,22 @@ public class AdminServlet extends BaseServlet {
 	 * 
 	 * }
 	 */
+	/**
+	 * 删除老师课程分配
+	 * @param req
+	 * @param resp
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void delTc(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		
+		int cno = Integer.parseInt(req.getParameter("cno"));
+		int tno = Integer.parseInt(req.getParameter("tno"));
+		int flag = adminService.delTc(tno, cno);
+		resp.sendRedirect(req.getContextPath()+"/servlet/AdminServlet?method=getAllCouAndTea");
+	}
+	
 	//给老师分配指定课程
 	public void addTeaAndCou(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {

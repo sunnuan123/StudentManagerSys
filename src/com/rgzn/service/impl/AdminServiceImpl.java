@@ -89,5 +89,9 @@ public class AdminServiceImpl implements AdminService {
 	public int addCouToTea(TeaAndCou tac) {
 		return teaAndCouDao.insertTeaAndCou(tac);
 	}
+	@Override
+	public int delTc(int tno, int cno) {
+		return teaAndCouDao.delOneTc(tno, cno);
+	}
 
 }

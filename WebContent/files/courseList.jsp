@@ -160,7 +160,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 														<td bgcolor="#FFFFFF">${cou.periodEnd}</td>
 														<td height="20" bgcolor="#FFFFFF">${cou.teacher.tname }</td>
 														<td height="20" bgcolor="#FFFFFF">${cou.teacher.tphone}</td>
-														<td bgcolor="#FFFFFF"><a href="#">删除</a>&nbsp;|&nbsp;<a href="#">修改</a></td>
+														<td bgcolor="#FFFFFF">
+														<c:if test="${empty cou.teacher.tname}">
+														删除|修改
+														</c:if>
+														
+														<c:if test="${not empty cou.teacher.tname}">
+														<a href="servlet/AdminServlet?method=delTc&cno=${cou.cno}&tno=${cou.teacher.tno}">删除</a>&nbsp;|&nbsp;<a href="#">修改</a>
+														</c:if>
+														</td>
 													</tr>
 													</c:forEach>
 													

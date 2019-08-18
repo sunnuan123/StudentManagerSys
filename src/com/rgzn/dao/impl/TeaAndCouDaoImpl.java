@@ -37,4 +37,14 @@ public class TeaAndCouDaoImpl implements TeaAndCouDao{
 		return flag;
 	}
 
+	@Override
+	public int delOneTc(int tno, int cno) {
+		String sql = "delete from t_tc where tno=? and cno=?";
+		Object[] params = {tno, cno};
+		
+		int flag = DBUtil.executeUpdate(sql, params);
+		DBUtil.closeAll();
+		return flag;
+	}
+
 }
