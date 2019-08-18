@@ -71,7 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												<tr>
 													<td>课程名称:</td>
 													<td>
-														<input name="name" type="text" class="text" style="width:154px" value="" />
+														<input name="cname" type="text" class="text" style="width:154px" value="" />
 													</td>
 												</tr>
 
@@ -85,14 +85,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												<tr>
 													<td>开课日期:</td>
 													<td>
-														<input class="text" name='periodstart' style="width:154px" value="" />
+														<input class="text" name='startDate' style="width:154px" value="" />
 													</td>
 												</tr>
 												
 												<tr>
 													<td>结课日期:</td>
 													<td>
-														<input class="text" type="text" name="periodend" style="width:154px" value="" /> </td>
+														<input class="text" type="text" name="endDate" style="width:154px" value="" /> </td>
 												</tr>
 											</table>
 											<br />
@@ -108,7 +108,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 					<TR>
 						<TD colspan="2" align="center" height="50px">
-							<input type="submit" name="Submit" value="保存" class="button" onclick="alert('保存成功！');" />
+							<input type="submit" name="Submit" value="保存" class="button" />
 						</TD>
 					</TR>
 				</table>

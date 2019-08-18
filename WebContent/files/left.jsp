@@ -159,7 +159,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<table id="subtree1" style="DISPLAY: none" width="80%" border="0" align="center" cellpadding="0" cellspacing="0" class="left-table02">
 						<tr>
 							<td width="9%" height="20"><img id="xiaotu1" src="images/ico06.gif" width="8" height="12" /></td>
-							<td width="91%"><a href="files/courseRegister.html" target="mainFrame" class="left-font03" onClick="tupian('1');">添加课程</a></td>
+							<td width="91%"><a href="files/courseRegister.jsp" target="mainFrame" class="left-font03" onClick="tupian('1');">添加课程</a></td>
 						</tr>
 						<tr>
 							<td width="9%" height="20"><img id="xiaotu2" src="images/ico06.gif" width="8" height="12" /></td>

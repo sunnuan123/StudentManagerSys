@@ -9,4 +9,8 @@ public interface CourseDao {
 	public int insertOneCourse(Course cou);
 	//查询所有课程和任课老师
 	public List<Course> selectAllCourseAndTeacher();
+	//查询所有课程
+	public List<Course> selectAllCou();
+	
+	
 }

@@ -6,14 +6,20 @@ import com.rgzn.dao.AdminDao;
 import com.rgzn.dao.ClassDao;
 import com.rgzn.dao.CourseDao;
 import com.rgzn.dao.StudentDao;
+import com.rgzn.dao.TeaAndCouDao;
+import com.rgzn.dao.TeacherDao;
 import com.rgzn.dao.impl.AdminDaoImpl;
 import com.rgzn.dao.impl.ClassDaoImpl;
 import com.rgzn.dao.impl.CourseDaoImpl;
 import com.rgzn.dao.impl.StudentDaoImpl;
+import com.rgzn.dao.impl.TeaAndCouDaoImpl;
+import com.rgzn.dao.impl.TeacherDaoImpl;
 import com.rgzn.entity.Admin;
 import com.rgzn.entity.Class;
 import com.rgzn.entity.Course;
 import com.rgzn.entity.Student;
+import com.rgzn.entity.TeaAndCou;
+import com.rgzn.entity.Teacher;
 import com.rgzn.service.AdminService;
 
 public class AdminServiceImpl implements AdminService {
@@ -22,7 +28,8 @@ public class AdminServiceImpl implements AdminService {
 	private StudentDao studentDao  =new StudentDaoImpl();
 	private ClassDao classDao = new ClassDaoImpl();
 	private CourseDao courseDao = new CourseDaoImpl();
-	
+	private TeacherDao teacherDao = new TeacherDaoImpl();
+	private TeaAndCouDao teaAndCouDao = new TeaAndCouDaoImpl();
 	@Override
 	public Admin login(String name, String pwd) {
 
@@ -69,6 +76,18 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<Course> findAllCourseAndTeacher() {
 		return courseDao.selectAllCourseAndTeacher();
+	}
+	@Override
+	public List<Course> findAllCou() {
+		return courseDao.selectAllCou();
+	}
+	@Override
+	public List<Teacher> findAllTea() {
+		return teacherDao.selectAllTea();
+	}
+	@Override
+	public int addCouToTea(TeaAndCou tac) {
+		return teaAndCouDao.insertTeaAndCou(tac);
 	}
 
 }

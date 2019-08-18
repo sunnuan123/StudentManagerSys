@@ -6,6 +6,8 @@ import com.rgzn.entity.Admin;
 import com.rgzn.entity.Class;
 import com.rgzn.entity.Course;
 import com.rgzn.entity.Student;
+import com.rgzn.entity.TeaAndCou;
+import com.rgzn.entity.Teacher;
 public interface AdminService {
 	//登录
 	public Admin login(String name, String pwd);
@@ -29,5 +31,11 @@ public interface AdminService {
 	public int addOneCourse(Course cou);
 	//管理员查询所有课程课和老师
 	public List<Course> findAllCourseAndTeacher();
+	//管理员查询所有课程
+	public List<Course> findAllCou();
+	//管理员查询所有老师
+	public List<Teacher> findAllTea();
+	//管理员指定课程给老师
+	public int addCouToTea(TeaAndCou tac);
 	
 }

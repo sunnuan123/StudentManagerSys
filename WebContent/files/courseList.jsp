@@ -89,7 +89,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</SCRIPT>
 
 	<body>
-		<form name="fom" id="fom" method="post">
+		<form name="fom" id="fom" method="post" action="servlet/AdminServlet?method=addTeaAndCou">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 
 				<tr>
@@ -102,21 +102,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<td width="20"></td>
 											<td>
 												给课程
-												<select name="select2">
-													<option>--请选择课程--</option>
-													<option>javase</option>
-													<option>javaee</option>
-													<option>oracle</option>
+												<select name="cno">
+													<option value="1" selected="selected">--请选择课程--</option>
+													<c:forEach items="${couList}" var="cou">
+														<option value="${cou.cno}" >${cou.cname}</option>
+													</c:forEach>
+													
 												</select>
 												指定教师
-												<select name="select2">
-													<option>--请选择教师--</option>
-													<option>赵老师</option>
-													<option>钱老师</option>
-													<option>孙老师33</option>
+												<select name="tno">
+													<option value="1" selected="selected">--请选择教师--</option>
+													<c:forEach items="${allTeacher}" var="tea">
+														<option value="${tea.tno}" name="tno">${tea.tname}</option>
+													</c:forEach>
 												</select>
 												
-												<input name="Submit" type="button" class="right-button02" value="提 交" />
+												<input name="Submit" type="submit" class="right-button02" value="提 交" />${msg}
 											</td>
 										</tr>
 									</table>

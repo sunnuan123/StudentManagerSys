@@ -1,13 +1,11 @@
 package com.rgzn.entity;
 
-public class TC {
+public class TeaAndCou {
 	private int cno;
 	private int tno;
 	
-	public TC() {
-	}
 
-	public TC(int cno, int tno) {
+	public TeaAndCou(int cno, int tno) {
 		this.cno = cno;
 		this.tno = tno;
 	}
@@ -30,8 +28,8 @@ public class TC {
 
 	@Override
 	public String toString() {
-		return "TC [cno=" + cno + ", tno=" + tno + "]";
+		return "TeaAndCou [cno=" + cno + ", tno=" + tno + "]";
 	}
-	
+
 	
 }

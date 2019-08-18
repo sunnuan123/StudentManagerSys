@@ -15,6 +15,8 @@ import com.rgzn.entity.Admin;
 import com.rgzn.entity.Class;
 import com.rgzn.entity.Course;
 import com.rgzn.entity.Student;
+import com.rgzn.entity.TeaAndCou;
+import com.rgzn.entity.Teacher;
 import com.rgzn.service.AdminService;
 import com.rgzn.service.impl.AdminServiceImpl;
 
@@ -39,13 +41,39 @@ public class AdminServlet extends BaseServlet {
 	 * 
 	 * }
 	 */
+	//给老师分配指定课程
+	public void addTeaAndCou(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
+		int cno = Integer.parseInt(req.getParameter("cno"));
+		int tno = Integer.parseInt(req.getParameter("tno"));
+		if(cno ==1 || tno == 1) {
+			getAllCouAndTea(req, resp);
+		}else {
+			TeaAndCou teaAndCou = new TeaAndCou(cno, tno);
+			int flag = adminService.addCouToTea(teaAndCou);
+			if(flag > 0) {
+				resp.sendRedirect(req.getContextPath()+"/servlet/AdminServlet?method=getAllCouAndTea");
+			}else if(flag == 0) {
+				req.setAttribute("msg", "此课程已经指定给该老师");
+				req.getRequestDispatcher("/servlet/AdminServlet?method=getAllCouAndTea").forward(req, resp);
+			}
+		}
+		
+		
+		
+		
+	}
 	
 	//管理员查询所有的课程和任课老师
 	public void getAllCouAndTea(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		List<Course> allCou = adminService.findAllCourseAndTeacher();
+		List<Teacher> allTeacher = adminService.findAllTea();
+		List<Course> couList = adminService.findAllCou();
 		req.setAttribute("allCou", allCou);
-		
+		req.setAttribute("allTeacher", allTeacher);
+		req.setAttribute("couList", couList);
 		req.getRequestDispatcher("/files/courseList.jsp").forward(req, resp);
 	}
 	
@@ -59,7 +87,7 @@ public class AdminServlet extends BaseServlet {
 		Course cou = new Course(cname, credit, startDate, endDate);
 		int flag = adminService.addOneCourse(cou);
 		if(flag > 0) {
-			resp.sendRedirect(req.getContextPath()+"/servlet/getAllCouAndTea");
+			resp.sendRedirect(req.getContextPath()+"/servlet/AdminServlet?method=getAllCouAndTea");
 		}
 		
 	}
@@ -103,7 +131,7 @@ public class AdminServlet extends BaseServlet {
 
 		int flag = adminService.delOneStu(sno);
 		if (flag > 0) {
-			resp.sendRedirect(req.getContextPath() + "/servlet/AllStudent");
+			resp.sendRedirect(req.getContextPath() + "/servlet/AdminServlet?method=AllStudent");
 		}
 	}
 

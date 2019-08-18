@@ -28,7 +28,7 @@ public class CourseDaoImpl implements CourseDao{
 	@Override
 	public List<Course> selectAllCourseAndTeacher() {
 		String sql = "select * from t_course cou left join t_tc tc on "
-				+ "tc.tno = cou.cno left join t_teacher tea on tea.tno = tc.tno";
+				+ "tc.cno = cou.cno left join t_teacher tea on tea.tno = tc.tno";
 		Object[] params = {};
 		ResultSet rs = DBUtil.executeQuery(sql, params);
 		
@@ -42,7 +42,7 @@ public class CourseDaoImpl implements CourseDao{
 				Date endDate = rs.getDate(5);
 				
 				
-				int tno = Integer.parseInt(rs.getString("tno"));
+				int tno = rs.getInt("tno");
 				String tname = rs.getString("tname");
 				String tpwd = rs.getString("tpwd");
 				String tphone = rs.getString("tphone");
@@ -61,6 +61,32 @@ public class CourseDaoImpl implements CourseDao{
 			DBUtil.closeAll();
 		}
 		
+		
+		return list;
+	}
+
+	@Override
+	public List<Course> selectAllCou() {
+		String sql = "select * from t_course";
+		Object[] params = {};
+		ResultSet rs = DBUtil.executeQuery(sql, params);
+		List list = new ArrayList<Course>();
+		
+		try {
+			while(rs.next()) {
+				int cno = rs.getInt("cno");
+				String cname = rs.getString("cname");
+				int credit = rs.getInt("credit");
+				Date periodStart = rs.getDate("periodstart");
+				Date periodEnd = rs.getDate("periodend");
+				Course course = new Course(cno, cname, credit, periodStart, periodEnd);
+				list.add(course);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.closeAll();
+		}
 		
 		return list;
 	}
