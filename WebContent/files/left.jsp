@@ -78,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
 									<tr>
 										<td width="25%" rowspan="2"><img src="images/ico02.gif" width="35" height="35" /></td>
-										<td width="75%" height="22" class="left-font01">您好，<span class="left-font02">${admin.name}</span></td>
+										<td width="75%" height="22" class="left-font01">您好，<span class="left-font02">${username}</span></td>
 									</tr>
 									<tr>
 										<td height="22" class="left-font01">
@@ -88,8 +88,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</td>
 						</tr>
 					</table>
-
-					<!-- 1.管理员显示的功能开始    -->
+					
+					<c:if test="${role == 'admin'}">
+						<!-- 1.管理员显示的功能开始    -->
 					<TABLE width="100%" border="0" cellpadding="0" cellspacing="0" class="left-table03">
 						<tr>
 							<td height="29">
@@ -113,7 +114,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<td width="91%"><a href="files/adminRegister.jsp" target="mainFrame" class="left-font03" onClick="tupian('21');">添加新的管理员</a></td>
 						</tr>
 					</table>
-
 					<!--  1.1 学生功能开始    -->
 					<TABLE width="100%" border="0" cellpadding="0" cellspacing="0" class="left-table03">
 						<tr>
@@ -141,7 +141,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</tr>
 					</table>
 					<!--  1.1 学生功能结束    -->
-
+					
 					<!--  1.2 课程功能开始    -->
 					<TABLE width="100%" border="0" cellpadding="0" cellspacing="0" class="left-table03">
 						<tr>
@@ -196,7 +196,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 					<!--  1.3 教师功能结束    -->
 					<!--  1.管理员显示的功能结束    -->
-
+					</c:if>
+					
+					
+					<c:if test="${role == 'student'}">
 					<!--  2.学生显示的功能开始    -->
 					<table width="100%" border="0" cellpadding="0" cellspacing="0" class="left-table03">
 						<tr>
@@ -227,8 +230,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</table>
 
 					<!--  学生显示的功能结束    -->
-
-					<!--  教师显示的功能开始    -->
+					</c:if>
+					
+					<c:if test="${role == 'teacher'}">
+						<!--  教师显示的功能开始    -->
 					<table width="100%" border="0" cellpadding="0" cellspacing="0" class="left-table03">
 						<tr>
 							<td height="29">
@@ -258,6 +263,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</table>
 
 					<!--  教师显示的功能结束    -->
+					</c:if>
 
 				</TD>
 			</tr>

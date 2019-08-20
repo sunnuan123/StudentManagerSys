@@ -180,5 +180,39 @@ public class StudentDaoImpl implements StudentDao {
 		
 		return stuList;
 	}
+	
+	/**
+	 * 通过名字和密码查询单个学生
+	 */
+	@Override
+	public Student selectByNameAndPwd(String name, String pwd) {
+		String sql = "select * from t_student where sname=? and pwd=?";
+		Object[] params = {name, pwd};
+		
+		ResultSet rs = DBUtil.executeQuery(sql, params);
+		Student stu = null;
+		try {
+			while(rs.next()) {
+				String sno = String.valueOf(rs.getInt(1));
+				String pwd1 = rs.getString(2);
+				String name1 = rs.getString(3);
+				String phone = rs.getString(4);
+				String gender = rs.getString(5);
+				Date birthday = rs.getDate(6);
+				int classno = rs.getInt(7);
+				String remark = rs.getString(8);
+				
+				stu = new Student(sno, name1, pwd1, phone, gender, birthday, classno, remark);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.closeAll();
+		}
+		
+		
+		
+		return stu;
+	}
 
 }

@@ -21,6 +21,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			-->
 		</style>
 		<link href="css/css.css" rel="stylesheet" type="text/css" />
+		
+		<script type="text/javascript">
+			function change() {
+				document.getElementById("randomStr").src="servlet/Random.jpg?a="+Math.random();
+			}
+		</script>
 	</head>
 
 	<body>
@@ -74,12 +80,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<td height="35" class="login-text02">验证图片：
 									<br />
 								</td>
-								<td><img src="images/pic05.gif" width="109" height="40" /> <a href="#" class="login-text03">看不清楚，换张图片</a></td>
+								<td><img src="servlet/Random.jpg" width="109" height="40" id="randomStr" /> <a href="javascript:change()" class="login-text03">看不清楚，换张图片${error}</a></td>
 							</tr>
 							<tr>
 								<td height="35" class="login-text02">请输入验证码：</td>
 								<td>
-									<input name="textfield3" type="text" size="30" />
+									<input name="yzm" type="text" size="30" />
 								</td>
 							</tr>
 							<tr>

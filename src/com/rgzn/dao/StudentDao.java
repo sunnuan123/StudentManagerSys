@@ -17,5 +17,7 @@ public interface StudentDao {
 	public int delStu(String sno);
 	//根据班级和姓名查询查询
 	public List<Student> selectByNameAndCls(String name, int cls);
+	//根据姓名和密码查询学生
+	public Student selectByNameAndPwd(String name, String pwd);
 	
 }

@@ -40,4 +40,32 @@ public class TeacherDaoImpl implements TeacherDao{
 		return list;
 	}
 
+	@Override
+	public Teacher selectByNameAndPwd(String tname, String tpwd) {
+		String sql = "select * from t_teacher where tname=? and tpwd=?";
+		Object[] params = {tname, tpwd};
+		
+		ResultSet rs = DBUtil.executeQuery(sql, params);
+		Teacher teacher = null;
+		try {
+			while(rs.next()) {
+				int tno = rs.getInt("tno");
+				String tname1 = rs.getString("tname");
+				String tpwd1 = rs.getString("tpwd");
+				String tphone = rs.getString("tphone");
+				Date hireDate = rs.getDate("hiredate");
+				String remark = rs.getString("remark");
+				
+				teacher = new Teacher(tno, tname1, tpwd1, tphone, hireDate, remark);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.closeAll();
+		}
+		
+		return teacher;
+	}
+
 }

@@ -8,10 +8,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.rgzn.entity.Admin;
+import com.rgzn.dao.TeacherDao;
+import com.rgzn.dao.impl.TeacherDaoImpl;
 import com.rgzn.service.AdminService;
+import com.rgzn.service.StudentService;
 import com.rgzn.service.impl.AdminServiceImpl;
+import com.rgzn.service.impl.StudentServiceImpl;
 
 @WebServlet("/servlet/User")
 public class User extends HttpServlet{
@@ -44,11 +48,34 @@ public class User extends HttpServlet{
 		//数据的接收
 		String username = req.getParameter("name");
 		String password = req.getParameter("pwd");
-		//数据处理
-		AdminService adminService = new AdminServiceImpl();
-		Admin admin = adminService.login(username, password);
 		
-		if (admin != null) {
+		String yzm = req.getParameter("yzm");
+		String randomStr = (String)req.getSession().getAttribute("randStr");
+		if(null == yzm || "".equals(yzm) || !randomStr.equals(yzm)) {
+			req.setAttribute("error", "验证码错误");
+			req.getRequestDispatcher("/login.jsp").forward(req, resp);
+			return ;
+		}
+		
+		Object user = null;
+		//数据处理
+		String role = req.getParameter("role");
+		HttpSession session = req.getSession();
+		session.setAttribute("role", role);
+		session.setAttribute("username", username);
+		if("admin".equals(role)) {
+			AdminService adminService = new AdminServiceImpl();
+			user = adminService.login(username, password);
+		}else if("student".equals(role)) {
+			StudentService  studentService = new StudentServiceImpl();
+			user = studentService.findByNameAndPwd(username, password);
+		}else if("teacher".equals(role)) {
+			TeacherDao teacherDao = new TeacherDaoImpl();
+			user = teacherDao.selectByNameAndPwd(username, password);
+		}
+		
+		
+		if (user != null) {
 			//统计登录人数
 			ServletContext context = req.getServletContext();
 			Integer count  = (Integer)context.getAttribute("count");
@@ -59,7 +86,7 @@ public class User extends HttpServlet{
 			}
 			context.setAttribute("count", count);
 			 
-			req.getSession().setAttribute("admin", admin);
+			session.setAttribute("user", user);
 			resp.sendRedirect(req.getContextPath()+"/index.html");
 		}else {
 			req.setAttribute("msg", "账号密码不匹配");

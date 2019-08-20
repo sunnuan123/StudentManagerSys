@@ -146,25 +146,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													</tr>
 													<tr>
 														<td width="21%" height="20" align="right" bgcolor="#FFFFFF">姓名:</td>
-														<td width="74%" bgcolor="#FFFFFF">${admin.name}</td>
+														<td width="74%" bgcolor="#FFFFFF">${user.name}</td>
 													</tr>
 													<tr>
 														<td height="20" align="right" bgcolor="#FFFFFF">编号:</td>
-														<td bgcolor="#FFFFFF">${admin.ano}</td>
+														<td bgcolor="#FFFFFF">${user.ano}</td>
 													</tr>
 													
 													<tr>
 														<td height="20" align="right" bgcolor="#FFFFFF">性别:</td>
-														<td bgcolor="#FFFFFF">${admin.gender}</td>
+														<td bgcolor="#FFFFFF">${user.gender}</td>
 													</tr>
 													
 													<tr>
 														<td align="right" bgcolor="#FFFFFF">电子邮箱:</td>
-														<td bgcolor="#FFFFFF">${admin.email}</td>
+														<td bgcolor="#FFFFFF">${user.email}</td>
 													</tr>
 													<tr>
 														<td align="right" bgcolor="#FFFFFF">电话号码:</td>
-														<td bgcolor="#FFFFFF">${admin.phone}</td>
+														<td bgcolor="#FFFFFF">${user.phone}</td>
 													</tr>
 													
 													<tr>
@@ -174,7 +174,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 													
 													<tr>
 														<td align="right" bgcolor="#FFFFFF">个人说明:</td>
-														<td bgcolor="#FFFFFF"><textarea rows="10" cols="120">${admin.remark}</textarea></td>
+														<td bgcolor="#FFFFFF"><textarea rows="10" cols="120">${user.remark}</textarea></td>
 													</tr>
 												</table>
 											</td>
