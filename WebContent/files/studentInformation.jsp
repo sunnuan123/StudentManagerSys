@@ -1,7 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-	<head>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<base href="<%=basePath %>">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title></title>
 		<style type="text/css">
@@ -44,7 +52,7 @@
 			-->
 		</style>
 
-		<link href="../css/css.css" rel="stylesheet" type="text/css" />
+		<link href="css/css.css" rel="stylesheet" type="text/css" />
 		<script type="text/JavaScript">
 
 		</script>
@@ -61,7 +69,7 @@
 				font-size: 12px;
 				height: 20px;
 				width: 45px;
-				background-image: url(../images/button04.gif);
+				background-image: url(images/button04.gif);
 				border-top-width: 0px;
 				border-right-width: 0px;
 				border-bottom-width: 0px;
@@ -72,7 +80,7 @@
 				font-size: 12px;
 				height: 20px;
 				width: 75px;
-				background-image: url(../images/button09.gif);
+				background-image: url(images/button09.gif);
 				border-top-width: 0px;
 				border-right-width: 0px;
 				border-bottom-width: 0px;
@@ -84,7 +92,7 @@
 			}
 			-->
 		</style>
-		<link href="../css/style.css" rel="stylesheet" type="text/css" />
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
 	</head>
 	<SCRIPT language=JavaScript>
 		function sousuo() {
@@ -119,7 +127,7 @@
 					<td height="30">
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
-								<td height="62" background="../images/nav04.gif" class="style10">
+								<td height="62" background="images/nav04.gif" class="style10">
 								</td>
 							</tr>
 						</table>
@@ -141,31 +149,31 @@
 													</tr>
 													<tr>
 														<td width="21%" height="20" align="right" bgcolor="#FFFFFF">姓名</td>
-														<td width="74%" bgcolor="#FFFFFF">aaaa</td>
+														<td width="74%" bgcolor="#FFFFFF">${user.name }</td>
 													</tr>
 													<tr>
 														<td height="20" align="right" bgcolor="#FFFFFF">编号:</td>
-														<td bgcolor="#FFFFFF">123133</td>
+														<td bgcolor="#FFFFFF">${user.sno }</td>
 													</tr>
 													<tr>
 														<td height="20" align="right" bgcolor="#FFFFFF">班级:</td>
-														<td bgcolor="#FFFFFF">aaaa</td>
+														<td bgcolor="#FFFFFF">${user.classno}</td>
 													</tr>
 													<tr>
 														<td height="20" align="right" bgcolor="#FFFFFF">性别:</td>
-														<td bgcolor="#FFFFFF">aaaa</td>
+														<td bgcolor="#FFFFFF">${user.gender}</td>
 													</tr>
 													<tr>
 														<td align="right" bgcolor="#FFFFFF">出生年月:</td>
-														<td bgcolor="#FFFFFF">aaaa</td>
+														<td bgcolor="#FFFFFF">${user.birthday}</td>
 													</tr>
 													<tr>
 														<td align="right" bgcolor="#FFFFFF">联系方式:</td>
-														<td bgcolor="#FFFFFF">aaaa</td>
+														<td bgcolor="#FFFFFF">${user.phone}</td>
 													</tr>
 													<tr>
 														<td align="right" bgcolor="#FFFFFF">备注:</td>
-														<td bgcolor="#FFFFFF"><textarea rows="10" cols="130"></textarea></td>
+														<td bgcolor="#FFFFFF"><textarea rows="10" cols="130">${user.remark}</textarea></td>
 													</tr>
 													
 												</table>

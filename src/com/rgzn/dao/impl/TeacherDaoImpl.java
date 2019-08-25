@@ -68,4 +68,14 @@ public class TeacherDaoImpl implements TeacherDao{
 		return teacher;
 	}
 
+	@Override
+	public int insertOneTeacher(Teacher tea) {
+		String sql = "insert into t_teacher(tname, tpwd, tphone, hiredate, remark) values(?,?,?,?,?)";
+		Object[] params = {tea.getTname(), tea.getTpwd(), tea.getTphone(), tea.getHireDate(), tea.getRemark()};
+		
+		int rs = DBUtil.executeUpdate(sql, params);
+		DBUtil.closeAll();
+		return rs;
+	}
+
 }

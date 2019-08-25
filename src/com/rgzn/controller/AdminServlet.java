@@ -41,6 +41,21 @@ public class AdminServlet extends BaseServlet {
 	 * 
 	 * }
 	 */
+	
+	/**
+	 * 添加一位老师
+	 * @param req
+	 * @param resp
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void addOneTea(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		
+		
+	}
+	
+	
 	/**
 	 * 删除老师课程分配
 	 * @param req

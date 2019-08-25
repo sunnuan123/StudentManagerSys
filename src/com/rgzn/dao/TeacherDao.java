@@ -9,4 +9,7 @@ public interface TeacherDao {
 	public List<Teacher> selectAllTea();
 	//根据姓名和密码查询所单个老师
 	public Teacher selectByNameAndPwd(String name, String pwd);
+	//插入一条数据
+	public int insertOneTeacher(Teacher tea);
+	
 }

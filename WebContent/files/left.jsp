@@ -217,15 +217,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<table id="subtree3" style="DISPLAY: none" width="80%" border="0" align="center" cellpadding="0" cellspacing="0" class="left-table02">
 						<tr>
 							<td width="9%" height="20"><img id="xiaotu9" src="images/ico06.gif" width="8" height="12" /></td>
-							<td width="91%"><a href="files/studentInformation.html" target="mainFrame" class="left-font03" onClick="tupian('9');">查看个人信息</a></td>
+							<td width="91%"><a href="files/studentInformation.jsp" target="mainFrame" class="left-font03" onClick="tupian('9');">查看个人信息</a></td>
 						</tr>
 						<tr>
 							<td width="9%" height="20"><img id="xiaotu10" src="images/ico06.gif" width="8" height="12" /></td>
-							<td width="91%"><a href="files/courseSelectList.html" target="mainFrame" class="left-font03" onClick="tupian('10');">选课</a></td>
+							<td width="91%"><a href="servlet/StudentServlet?method=getCouAndTea" target="mainFrame" class="left-font03" onClick="tupian('10');">选课</a></td>
 						</tr>
 						<tr>
 							<td width="9%" height="20"><img id="xiaotu11" src="images/ico06.gif" width="8" height="12" /></td>
-							<td width="91%"><a href="files/courseSelectedList.html" target="mainFrame" class="left-font03" onClick="tupian('11');">查看已选课程</a></td>
+							<td width="91%"><a href="servlet/StudentServlet?method=getSelectedCou" target="mainFrame" class="left-font03" onClick="tupian('11');">查看已选课程</a></td>
 						</tr>
 					</table>
 

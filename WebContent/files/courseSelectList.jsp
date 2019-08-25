@@ -1,7 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-	<head>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<base href="<%=basePath %>">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title></title>
 		<style type="text/css">
@@ -44,11 +52,11 @@
 			-->
 		</style>
 
-		<link href="../css/css.css" rel="stylesheet" type="text/css" />
+		<link href="css/css.css" rel="stylesheet" type="text/css" />
 		<script type="text/JavaScript">
 
 		</script>
-		<link href="../css/style.css" rel="stylesheet" type="text/css" />
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
 	</head>
 	<SCRIPT language=JavaScript>
 		function sousuo() {
@@ -81,14 +89,14 @@
 	</SCRIPT>
 
 	<body>
-		<form name="fom" id="fom" method="post">
+		<form name="fom" id="fom" method="post" action="servlet/StudentServlet?method=addTsc">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 
 				<tr>
 					<td height="30">
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
-								<td height="62" background="../images/nav04.gif">
+								<td height="62" background="images/nav04.gif">
 								</td>
 							</tr>
 						</table>
@@ -109,7 +117,7 @@
 													</tr>
 													<tr>
 														<td width="6%" align="center" bgcolor="#EEEEEE">选择</td>
-														<td width="9%" height="20" align="center" bgcolor="#EEEEEE">课程编号</td>
+														<td width="9%" height="20" align="center" bgcolor="#EEEEEE">课程编号</td>${msg}
 														<td width="9%" align="center" bgcolor="#EEEEEE">课程名称</td>
 														<td width="9%" align="center" bgcolor="#EEEEEE">学分</td>
 														<td width="9%" align="center" bgcolor="#EEEEEE">开课时间</td>
@@ -117,36 +125,18 @@
 														<td width="4%" align="center" bgcolor="#EEEEEE">任课老师</td>
 														<td width="10%" align="center" bgcolor="#EEEEEE">联系电话</td>
 													</tr>
+													<c:forEach items="${allCou}" var="cou">
 													<tr>
-														<td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-														<td height="20" bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">001</a></td>
-														<td bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">Java</a></td>
-														<td bgcolor="#FFFFFF">6</td>
-														<td bgcolor="#FFFFFF">2017-01-01</td>
-														<td bgcolor="#FFFFFF">2017-06-01</td>
-														<td height="20" bgcolor="#FFFFFF">王老师</td>
-														<td height="20" bgcolor="#FFFFFF">13566789078</td>
+														<td bgcolor="#FFFFFF"><input type="checkbox" name="delid" value="${cou.cno}#${cou.teacher.tno}"/></td>
+														<td height="20" bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">${cou.cno}</a></td>
+														<td bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">${cou.cname}</a></td>
+														<td bgcolor="#FFFFFF">${cou.credit}</td>
+														<td bgcolor="#FFFFFF">${cou.periodStart}</td>
+														<td bgcolor="#FFFFFF">${cou.periodEnd}</td>
+														<td height="20" bgcolor="#FFFFFF">${cou.teacher.tname }</td>
+														<td height="20" bgcolor="#FFFFFF">${cou.teacher.tphone}</td>
 													</tr>
-													<tr>
-														<td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-														<td height="20" bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">001</a></td>
-														<td bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">C++</a></td>
-														<td bgcolor="#FFFFFF">6</td>
-														<td bgcolor="#FFFFFF">2017-01-01</td>
-														<td bgcolor="#FFFFFF">2017-06-01</td>
-														<td height="20" bgcolor="#FFFFFF">赵老师</td>
-														<td height="20" bgcolor="#FFFFFF">13566789078</td>
-													</tr>
-													<tr>
-														<td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-														<td height="20" bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">001</a></td>
-														<td bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">Python</a></td>
-														<td bgcolor="#FFFFFF">6</td>
-														<td bgcolor="#FFFFFF">2017-01-01</td>
-														<td bgcolor="#FFFFFF">2017-06-01</td>
-														<td height="20" bgcolor="#FFFFFF">刘老师</td>
-														<td height="20" bgcolor="#FFFFFF">13566789078</td>
-													</tr>
+													</c:forEach>
 													
 												</table>
 											</td>
@@ -157,7 +147,7 @@
 						</table>
 					<tr>
 						<td align="center" height="40px">
-							<input type="button" name="Submit" value="提交选中课程" class="button" onclick="alert('提交成功！');"/>　
+							<input type="submit" name="Submit" value="提交选中课程" class="button"/>　
 						</td>
 					</tr>
 					</td>

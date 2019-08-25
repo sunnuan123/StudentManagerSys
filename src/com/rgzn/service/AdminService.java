@@ -39,4 +39,6 @@ public interface AdminService {
 	public int addCouToTea(TeaAndCou tac);
 	//管理员取消老师分配的课程
 	public int delTc(int tno, int cno);
+	//管理员插入一条老师数据
+	public int addOnetea(Teacher tea);
 }
