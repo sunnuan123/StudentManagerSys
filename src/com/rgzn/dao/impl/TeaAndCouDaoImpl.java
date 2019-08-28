@@ -53,10 +53,10 @@ public class TeaAndCouDaoImpl implements TeaAndCouDao{
 	}
 
 	@Override
-	public List<Course> selectTeaAndCou() {
-		String sql = "select * from t_course cou join t_tc tc on "
-				+ "tc.cno = cou.cno join t_teacher tea on tea.tno = tc.tno";
-		Object[] params = {};
+	public List<Course> selectTeaAndCou(int sno) {
+		String sql = "select * from t_course cou left join t_tc tc on tc.cno=cou.cno left join t_teacher tea on tea.tno=tc.tno"+ 
+				" where cou.cno not in(SELECT cno from t_sc WHERE sno=?)";
+		Object[] params = {sno};
 		ResultSet rs = DBUtil.executeQuery(sql, params);
 		
 		List list = new ArrayList<Course>();

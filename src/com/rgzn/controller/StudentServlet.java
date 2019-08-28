@@ -101,7 +101,10 @@ public class StudentServlet extends BaseServlet{
 	 */
 	public void getCouAndTea(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		List<Course> allCou = stuService.findCouAndTea();
+		
+		Student stu = (Student)req.getSession().getAttribute("user");
+		int sno = Integer.parseInt(stu.getSno());
+		List<Course> allCou = stuService.findCouAndTea(sno);
 		req.setAttribute("allCou", allCou);
 		req.getRequestDispatcher("/files/courseSelectList.jsp").forward(req, resp);
 	}

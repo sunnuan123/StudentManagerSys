@@ -254,7 +254,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</tr>
 						<tr>
 							<td width="9%" height="20"><img id="xiaotu13" src="images/ico06.gif" width="8" height="12" /></td>
-							<td width="91%"><a href="files/mark.html" target="mainFrame" class="left-font03" onClick="tupian('13');">评分</a></td>
+							<td width="91%"><a href="servlet/teacherServlet?method=getAllSCC" target="mainFrame" class="left-font03" onClick="tupian('13');">评分</a></td>
 						</tr>
 						<tr>
 							<td width="9%" height="20"><img id="xiaotu14" src="images/ico06.gif" width="8" height="12" /></td>

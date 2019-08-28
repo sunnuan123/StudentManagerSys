@@ -1,7 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-	<head>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<base href="<%=basePath %>">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title></title>
 		<style type="text/css">
@@ -44,11 +52,11 @@
 			-->
 		</style>
 
-		<link href="../css/css.css" rel="stylesheet" type="text/css" />
+		<link href="css/css.css" rel="stylesheet" type="text/css" />
 		<script type="text/JavaScript">
 
 		</script>
-		<link href="../css/style.css" rel="stylesheet" type="text/css" />
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
 	</head>
 	<SCRIPT language=JavaScript>
 		function sousuo() {
@@ -78,6 +86,25 @@
 			document.getElementById("fom").action = "yuangong.htm";
 			document.getElementById("fom").submit();
 		}
+		
+		function score(th) {
+			var tr = th.parentNode.parentNode;
+			var td = tr.cells;
+			td[7].innerHTML = "<input type='text' size='3px' value='"+td[7].innerHTML+"' onblur='update(this)'/>";
+			
+			
+		}
+		function update(th) {
+			var tr = th.parentNode.parentNode;
+			var td = tr.cells;
+			var sno = td[1].innerText;
+			var cno = td[4].innerText;
+			var score = th.value;
+			window.location.href="servlet/teacherServlet?method=setScore&sno="+sno+"&cno="+cno+"&score="+score;
+			
+		}
+		
+		
 	</SCRIPT>
 
 	<body>
@@ -88,7 +115,7 @@
 					<td height="30">
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
-								<td height="62" background="../images/nav04.gif">
+								<td height="62" background="images/nav04.gif">
 								</td>
 							</tr>
 						</table>
@@ -114,44 +141,24 @@
 														<td width="9%" align="center" bgcolor="#EEEEEE">学生班级</td>
 														<td width="9%" align="center" bgcolor="#EEEEEE">课程编号</td>
 														<td width="10%" align="center" bgcolor="#EEEEEE">课程名称</td>
-														<td width="4%" align="center" bgcolor="#EEEEEE">课时</td>
 														<td width="4%" align="center" bgcolor="#EEEEEE">学分</td>
+														<td width="4%" align="center" bgcolor="#FFFFFF">得分</td>
 														<td width="19%" align="center" bgcolor="#EEEEEE">操作</td>
 													</tr>
-													<tr>
-														<td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-														<td height="20" bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">1235</a></td>
-														<td bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">张同学</a></td>
-														<td bgcolor="#FFFFFF">201</td>
-														<td bgcolor="#FFFFFF">001</td>
-														<td bgcolor="#FFFFFF">Java</td>
-														<td height="20" bgcolor="#FFFFFF">70</td>
-														<td height="20" bgcolor="#FFFFFF">5</td>
-														<td bgcolor="#FFFFFF"><a href="#">评分</td>
-													</tr>
-													<tr>
-														<td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-														<td height="20" bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">1235</a></td>
-														<td bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">李同学</a></td>
-														<td bgcolor="#FFFFFF">201</td>
-														<td bgcolor="#FFFFFF">001</td>
-														<td bgcolor="#FFFFFF">Java</td>
-														<td height="20" bgcolor="#FFFFFF">70</td>
-														<td height="20" bgcolor="#FFFFFF">5</td>
-														<td bgcolor="#FFFFFF"><a href="#">评分</td>
-													</tr>
-													<tr>
-														<td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-														<td height="20" bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">1235</a></td>
-														<td bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">王同学</a></td>
-														<td bgcolor="#FFFFFF">201</td>
-														<td bgcolor="#FFFFFF">001</td>
-														<td bgcolor="#FFFFFF">Java</td>
-														<td height="20" bgcolor="#FFFFFF">70</td>
-														<td height="20" bgcolor="#FFFFFF">5</td>
-														<td bgcolor="#FFFFFF"><a href="#">评分</td>
-													</tr>
 													
+													<c:forEach items="${allSCC}" var="scc">
+														<tr>
+														<td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
+														<td height="20" bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">${scc.sno}</a></td>
+														<td bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">${scc.sname}</a></td>
+														<td bgcolor="#FFFFFF">${scc.clzName}</td>
+														<td bgcolor="#FFFFFF">${scc.cno }</td>
+														<td bgcolor="#FFFFFF">${scc.cname}</td>
+														<td height="20" bgcolor="#FFFFFF">${scc.credit}</td>
+														<td height="20" bgcolor="#FFFFFF">${scc.score}</td>
+														<td bgcolor="#FFFFFF"><a href="javascript:return false" onclick="score(this)">评分</a></td>
+													</tr>
+													</c:forEach>
 												</table>
 											</td>
 										</tr>
@@ -161,7 +168,7 @@
 						</table>
 						<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
 							<tr>
-								<td height="6"><img src="../images/spacer.gif" width="1" height="1" /></td>
+								<td height="6"><img src="images/spacer.gif" width="1" height="1" /></td>
 							</tr>
 							<tr>
 								<td height="33">

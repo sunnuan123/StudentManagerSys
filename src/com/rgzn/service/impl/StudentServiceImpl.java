@@ -23,9 +23,9 @@ public class StudentServiceImpl implements StudentService {
 		return studentDao.selectByNameAndPwd(name, pwd);
 	}
 	@Override
-	public List<Course> findCouAndTea() {
+	public List<Course> findCouAndTea(int sno) {
 		// TODO Auto-generated method stub
-		return tad.selectTeaAndCou();
+		return tad.selectTeaAndCou(sno);
 	}
 	@Override
 	public int addTsc(int sno, int cno, int tno) {
