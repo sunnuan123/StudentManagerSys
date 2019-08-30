@@ -2,6 +2,7 @@ package com.rgzn.service;
 
 import java.util.List;
 
+import com.rgzn.entity.Course;
 import com.rgzn.entity.SCC;
 import com.rgzn.entity.Teacher;
 
@@ -12,4 +13,7 @@ public interface TeacherService {
 	public List<SCC> findAllStu(int tno);
 	//评分
 	public int setScore(int score, int sno, int cno, int tno);
+	//查询该老师选择的课程
+	public List<Course> getCouByTno(int tno);
+	
 }

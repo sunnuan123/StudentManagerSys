@@ -94,8 +94,22 @@ public class AdminServiceImpl implements AdminService {
 		return teaAndCouDao.delOneTc(tno, cno);
 	}
 	@Override
-	public int addOnetea(Teacher tea) {
+	public int addOneTea(Teacher tea) {
 		return teacherDao.insertOneTeacher(tea);
+	}
+	@Override
+	public int delOneTea(int tno) {
+		return teacherDao.delOneTea(tno);
+	}
+	@Override
+	public Teacher findTeaByTno(int tno) {
+		// TODO Auto-generated method stub
+		return teacherDao.selectTeaByTno(tno);
+	}
+	@Override
+	public int modTea(Teacher tea) {
+		// TODO Auto-generated method stub
+		return teacherDao.updateTea(tea);
 	}
 
 }

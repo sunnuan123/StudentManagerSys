@@ -11,6 +11,7 @@ public interface CourseDao {
 	public List<Course> selectAllCourseAndTeacher();
 	//查询所有课程
 	public List<Course> selectAllCou();
-	
+	//查询该老师所担任的课程
+	public List<Course> selectCouByTno(int tno);
 	
 }

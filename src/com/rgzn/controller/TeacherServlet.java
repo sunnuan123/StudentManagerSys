@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.rgzn.entity.Course;
 import com.rgzn.entity.SCC;
 import com.rgzn.entity.Teacher;
 import com.rgzn.service.TeacherService;
@@ -17,6 +18,24 @@ import com.rgzn.service.impl.TeacherServiceImpl;
 public class TeacherServlet extends BaseServlet{
 	
 	TeacherService teacherService = new TeacherServiceImpl();
+	
+	/**
+	 * 查询该老师担任的课程
+	 * @param req
+	 * @param resp
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void getCouByTno(HttpServletRequest req, HttpServletResponse resp) 
+			throws ServletException, IOException{
+		Teacher tea = (Teacher)req.getSession().getAttribute("user");
+		int tno = tea.getTno();
+		List<Course> allCou = teacherService.getCouByTno(tno);
+		req.setAttribute("allCou", allCou);
+		req.getRequestDispatcher("/files/scheduleList.jsp").forward(req, resp);
+		
+	}
+	
 	
 	/**
 	 * 得到课程学生

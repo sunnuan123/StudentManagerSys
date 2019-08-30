@@ -41,6 +41,55 @@ public class AdminServlet extends BaseServlet {
 	 * 
 	 * }
 	 */
+	public void modTeacher(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		int tno = Integer.parseInt(req.getParameter("tno"));
+		String tname = req.getParameter("tname");
+		String tpwd = req.getParameter("tpwd");
+		String tphone = req.getParameter("tphone");
+		Date hireDate = Date.valueOf(req.getParameter("hireDate"));
+		String remark = req.getParameter("remark");
+		Teacher tea = new Teacher(tno, tname, tpwd, tphone, hireDate, remark);
+		
+		int flag = adminService.modTea(tea);
+		if(flag>0) {
+			resp.sendRedirect(req.getContextPath()+"/servlet/AdminServlet?method=findAllTea");
+		}
+		
+		
+	}
+	/**
+	 * 通过学号查询老师
+	 * @param req
+	 * @param resp
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void getTeaByTno(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		int tno = Integer.parseInt(req.getParameter("tno"));
+		Teacher tea = adminService.findTeaByTno(tno);
+		req.setAttribute("tea", tea);
+		req.getRequestDispatcher("/files/modTeacher.jsp").forward(req, resp);
+		
+	}
+	
+	/**
+	 * 删除一条数据
+	 * @param req
+	 * @param resp
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void delOneTea(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		int tno = Integer.parseInt(req.getParameter("tno"));
+		int flag = adminService.delOneTea(tno);
+		if(flag>0) {
+			resp.sendRedirect(req.getContextPath()+"/servlet/AdminServlet?method=findAllTea");
+			
+		}
+	}
 	
 	/**
 	 * 添加一位老师
@@ -51,6 +100,34 @@ public class AdminServlet extends BaseServlet {
 	 */
 	public void addOneTea(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
+		String tname = req.getParameter("tname");
+		String tpwd = req.getParameter("tpwd");
+		String tphone = req.getParameter("tphone");
+		Date hireDate = Date.valueOf(req.getParameter("hireDate"));
+		String remark = req.getParameter("remark");
+		Teacher tea = new Teacher(tname, tpwd, tphone, hireDate, remark);
+		
+		int flag = adminService.addOneTea(tea);
+		if(flag>0) {
+			resp.sendRedirect(req.getContextPath()+"/servlet/AdminServlet?method=findAllTea");
+		}
+		
+		
+	}
+	/**
+	 * 查询所有的老师
+	 * @param req
+	 * @param resp
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void findAllTea(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		List<Teacher> allTea = adminService.findAllTea();
+		req.setAttribute("allTea", allTea);
+		req.getRequestDispatcher("/files/teacherList.jsp").forward(req, resp);
+		
 		
 		
 	}

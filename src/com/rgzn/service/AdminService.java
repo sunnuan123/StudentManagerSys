@@ -40,5 +40,11 @@ public interface AdminService {
 	//管理员取消老师分配的课程
 	public int delTc(int tno, int cno);
 	//管理员插入一条老师数据
-	public int addOnetea(Teacher tea);
+	public int addOneTea(Teacher tea);
+	//删除一位老师
+	public int delOneTea(int tno);
+	//根据编号查询一位老师
+	public Teacher findTeaByTno(int tno);
+	//修改老师信息
+	public int modTea(Teacher tea);
 }

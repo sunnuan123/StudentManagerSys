@@ -10,8 +10,16 @@ public class Teacher {
 	private Date hireDate;
 	private String remark;
 	
-	public Teacher() {
+	
+
+	public Teacher(String tname, String tpwd, String tphone, Date hireDate, String remark) {
+		this.tname = tname;
+		this.tpwd = tpwd;
+		this.tphone = tphone;
+		this.hireDate = hireDate;
+		this.remark = remark;
 	}
+
 
 	public Teacher(int tno, String tname, String tpwd, String tphone, Date hireDate, String remark) {
 		this.tno = tno;
@@ -21,7 +29,8 @@ public class Teacher {
 		this.hireDate = hireDate;
 		this.remark = remark;
 	}
-
+	
+	
 	public Teacher(String tname, String tpwd) {
 		this.tname = tname;
 		this.tpwd = tpwd;

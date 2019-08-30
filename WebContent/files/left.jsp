@@ -190,7 +190,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</tr>
 						<tr>
 							<td width="9%" height="20"><img id="xiaotu8" src="images/ico06.gif" width="8" height="12" /></td>
-							<td width="91%"><a href="files/teacherList.html" target="mainFrame" class="left-font03" onClick="tupian('8');">查询教师</a></td>
+							<td width="91%"><a href="servlet/AdminServlet?method=findAllTea" target="mainFrame" class="left-font03" onClick="tupian('8');">查询教师</a></td>
 						</tr>
 					</table>
 
@@ -258,7 +258,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</tr>
 						<tr>
 							<td width="9%" height="20"><img id="xiaotu14" src="images/ico06.gif" width="8" height="12" /></td>
-							<td width="91%"><a href="files/scheduleList.html" target="mainFrame" class="left-font03" onClick="tupian('14');">查看任课课程</a></td>
+							<td width="91%"><a href="servlet/teacherServlet?method=getCouByTno" target="mainFrame" class="left-font03" onClick="tupian('14');">查看任课课程</a></td>
 						</tr>
 					</table>
 

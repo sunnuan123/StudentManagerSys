@@ -11,5 +11,10 @@ public interface TeacherDao {
 	public Teacher selectByNameAndPwd(String name, String pwd);
 	//插入一条数据
 	public int insertOneTeacher(Teacher tea);
-	
+	//删除一条数据
+	public int delOneTea(int tno);
+	//根据编号查询老师
+	public Teacher selectTeaByTno(int tno);
+	//修改老师
+	public int updateTea(Teacher tea);
 }

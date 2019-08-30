@@ -70,12 +70,58 @@ public class TeacherDaoImpl implements TeacherDao{
 
 	@Override
 	public int insertOneTeacher(Teacher tea) {
+		
 		String sql = "insert into t_teacher(tname, tpwd, tphone, hiredate, remark) values(?,?,?,?,?)";
 		Object[] params = {tea.getTname(), tea.getTpwd(), tea.getTphone(), tea.getHireDate(), tea.getRemark()};
 		
 		int rs = DBUtil.executeUpdate(sql, params);
 		DBUtil.closeAll();
 		return rs;
+	}
+
+	@Override
+	public int delOneTea(int tno) {
+
+		String sql = "delete from t_teacher where tno=?";
+		Object[] params = {tno};
+		int flag = DBUtil.executeUpdate(sql, params);
+		DBUtil.closeAll();
+		return flag;
+	}
+
+	@Override
+	public Teacher selectTeaByTno(int tno) {
+
+		String sql = "select * from t_teacher where tno=?";
+		Object[] params = {tno};
+		ResultSet rs = DBUtil.executeQuery(sql, params);
+		Teacher tea = null;
+		try {
+			while(rs.next()) {
+				String tname1 = rs.getString("tname");
+				String tpwd1 = rs.getString("tpwd");
+				String tphone = rs.getString("tphone");
+				Date hireDate = rs.getDate("hiredate");
+				String remark = rs.getString("remark");
+				
+				tea = new Teacher(tno, tname1, tpwd1, tphone, hireDate, remark);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return tea;
+	}
+
+	@Override
+	public int updateTea(Teacher tea) {
+
+		String sql = "update t_teacher set tname=?, tpwd=?, tphone=?, hiredate=?, remark=? where tno=?";
+		Object[] params = {tea.getTname(), tea.getTpwd(), tea.getTphone(), tea.getHireDate(), tea.getRemark(),tea.getTno()};
+		int flag = DBUtil.executeUpdate(sql, params);
+		DBUtil.closeAll();
+		return flag;
 	}
 
 }

@@ -1,7 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-	<head>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<base href="<%=basePath %>">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title></title>
 		<style type="text/css">
@@ -44,11 +52,11 @@
 			-->
 		</style>
 
-		<link href="../css/css.css" rel="stylesheet" type="text/css" />
+		<link href="css/css.css" rel="stylesheet" type="text/css" />
 		<script type="text/JavaScript">
 
 		</script>
-		<link href="../css/style.css" rel="stylesheet" type="text/css" />
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
 	</head>
 	<SCRIPT language=JavaScript>
 		function sousuo() {
@@ -88,7 +96,7 @@
 					<td height="30">
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
-								<td height="62" background="../images/nav04.gif">
+								<td height="62" background="images/nav04.gif">
 								</td>
 							</tr>
 						</table>
@@ -111,38 +119,21 @@
 														<td width="6%" align="center" bgcolor="#EEEEEE">选择</td>
 														<td width="9%" height="20" align="center" bgcolor="#EEEEEE">编号</td>
 														<td width="9%" align="center" bgcolor="#EEEEEE">姓名</td>
-														<td width="9%" align="center" bgcolor="#EEEEEE">性别</td>
 														<td width="9%" align="center" bgcolor="#EEEEEE">联系方式</td>
 														<td width="9%" align="center" bgcolor="#EEEEEE">入职日期</td>
 														<td width="19%" align="center" bgcolor="#EEEEEE">操作</td>
 													</tr>
+													<c:forEach items="${allTea }" var="tea">
 													<tr>
 														<td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-														<td height="20" bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">1001</a></td>
-														<td bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">张老师</a></td>
-														<td height="20" bgcolor="#FFFFFF">男</td>
-														<td bgcolor="#FFFFFF">13588766678</td>
-														<td bgcolor="#FFFFFF">2016-09-19</td>
-														<td bgcolor="#FFFFFF"><a href="#">删除</a>&nbsp;|&nbsp;<a href="#">修改</a></td>
+														<td height="20" bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">${tea.tno}</a></td>
+														<td bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">${tea.tname}</a></td>
+														<td bgcolor="#FFFFFF">${tea.tphone}</td>
+														<td bgcolor="#FFFFFF">${tea.hireDate}</td>
+														<td bgcolor="#FFFFFF"><a href="servlet/AdminServlet?method=delOneTea&tno=${tea.tno}">删除</a>&nbsp;|&nbsp;<a href="servlet/AdminServlet?method=getTeaByTno&tno=${tea.tno}">修改</a></td>
 													</tr>
-													<tr>
-														<td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-														<td height="20" bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">1002</a></td>
-														<td bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">刘老师</a></td>
-														<td height="20" bgcolor="#FFFFFF">男</td>
-														<td bgcolor="#FFFFFF">13588766678</td>
-														<td bgcolor="#FFFFFF">2016-09-19</td>
-														<td bgcolor="#FFFFFF"><a href="#">删除</a>&nbsp;|&nbsp;<a href="#">修改</a></td>
-													</tr>
-													<tr>
-														<td bgcolor="#FFFFFF"><input type="checkbox" name="delid"/></td>
-														<td height="20" bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">1003</a></td>
-														<td bgcolor="#FFFFFF"><a href="listyuangongmingxi.html">王老师</a></td>
-														<td height="20" bgcolor="#FFFFFF">男</td>
-														<td bgcolor="#FFFFFF">13588766678</td>
-														<td bgcolor="#FFFFFF">2016-09-19</td>
-														<td bgcolor="#FFFFFF"><a href="#">删除</a>&nbsp;|&nbsp;<a href="#">修改</a></td>
-													</tr>
+													</c:forEach>
+												
 													
 												</table>
 											</td>
@@ -153,7 +144,7 @@
 						</table>
 						<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
 							<tr>
-								<td height="6"><img src="../images/spacer.gif" width="1" height="1" /></td>
+								<td height="6"><img src="images/spacer.gif" width="1" height="1" /></td>
 							</tr>
 							<tr>
 								<td height="33">

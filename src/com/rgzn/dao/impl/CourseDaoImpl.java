@@ -91,4 +91,30 @@ public class CourseDaoImpl implements CourseDao{
 		return list;
 	}
 
+	@Override
+	public List<Course> selectCouByTno(int tno) {
+		String sql = "select * from t_course cou join t_tc tc on tc.cno=cou.cno"
+				+ " join t_teacher tea on tea.tno=tc.tno where tc.tno=?";
+		Object[] params = {tno};
+		ResultSet rs = DBUtil.executeQuery(sql, params);
+		List list = new ArrayList<Course>();
+		try {
+			while(rs.next()) {
+				int cno = rs.getInt("cno");
+				String cname = rs.getString("cname");
+				int credit = rs.getInt("credit");
+				Date periodStart = rs.getDate("periodstart");
+				Date periodEnd = rs.getDate("periodend");
+				Course course = new Course(cno, cname, credit, periodStart, periodEnd);
+				list.add(course);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.closeAll();
+		}
+		
+		return list;
+	}
+
 }
